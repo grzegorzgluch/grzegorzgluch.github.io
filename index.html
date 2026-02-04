@@ -29,48 +29,102 @@
       .talk-item .small { font-size: 0.85rem; }
       .talk-item em { font-style: normal; color: #555; }
 
-      /* Publications: tighter layout + stronger venues + subtler links */
-      #publications .resume-item { margin-bottom: 1.25rem !important; } /* replaces mb-5 whitespace */
-      #publications .resume-content h4 { margin-bottom: 0.25rem; }
+      /* --- Publications: new 3-line layout --- */
+      #publications .pub-item { margin-bottom: 1.25rem !important; }
 
-      #publications .pub-venue {
-        margin-top: 0.15rem;
-        margin-bottom: 0.4rem;
+      /* Line 1: title */
+      #publications .pub-title {
+        margin: 0;
+        line-height: 1.25;
+      }
+      #publications .pub-title a {
+        text-decoration: none;
+        color: inherit;
+      }
+      #publications .pub-title a:hover { text-decoration: underline; }
+
+      /* Line 2: badges + arXiv (subtle) */
+      #publications .pub-meta {
+        margin-top: 0.35rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      #publications .pub-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        align-items: center;
       }
 
       /* Venue badges: prominent but compact */
-      #publications .pub-venue .badge {
+      #publications .pub-badges .badge {
         font-weight: 800;
         letter-spacing: 0.35px;
         text-transform: uppercase;
         font-size: 0.78rem;
         padding: 0.42em 0.6em;
-        margin-right: 0.35rem;
-        margin-bottom: 0.25rem;
         border-radius: 999px;
       }
 
       /* Slightly different feel for status tags */
-      #publications .pub-venue .badge.pub-status {
+      #publications .pub-badges .badge.pub-status {
         font-weight: 700;
         opacity: 0.95;
       }
 
+      /* Clickable badge wrapper */
+      #publications .pub-badge-link {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+      }
+      #publications .pub-badge-link:hover { filter: brightness(0.95); }
+
+      /* Subtle arXiv link (not a button) */
+      #publications .pub-arxiv a {
+        font-size: 0.82rem;
+        text-decoration: none;
+        opacity: 0.55;
+        transition: opacity 120ms ease;
+        white-space: nowrap;
+      }
+      #publications .pub-arxiv a:hover { opacity: 0.9; text-decoration: underline; }
+
+      /* Line 3: authors + abstract toggle */
       #publications .pub-authors {
+        margin-top: 0.5rem;
         color: rgba(0,0,0,0.65);
-        margin-bottom: 0.35rem;
+        margin-bottom: 0.15rem;
       }
 
-      #publications .pub-links .btn {
-        padding: 0.15rem 0.45rem;
-        font-size: 0.78rem;
-        opacity: 0.85;
+      /* Abstract toggle that expands cleanly without messing up layout */
+      #publications details.pub-abstract {
+        margin-top: 0.35rem;
       }
-      #publications .pub-links .btn:hover { opacity: 1; }
+      #publications details.pub-abstract summary {
+        cursor: pointer;
+        user-select: none;
+        font-size: 0.9rem;
+        opacity: 0.8;
+        list-style: none;
+      }
+      #publications details.pub-abstract summary::-webkit-details-marker { display: none; }
+      #publications details.pub-abstract summary:before {
+        content: "▸";
+        display: inline-block;
+        margin-right: 0.35rem;
+        transform: translateY(-0.5px);
+      }
+      #publications details.pub-abstract[open] summary:before { content: "▾"; }
+      #publications details.pub-abstract .pub-abstract-body {
+        margin-top: 0.35rem;
+        padding-left: 1.05rem;
+      }
 
-      #publications details { margin-top: 0.35rem; }
-      #publications details summary { cursor: pointer; }
-      #publications details p { margin-top: 0.35rem; }
       #publications .subheading.mb-3 { margin-top: 2rem; }
 
       /* Button spacing in groups */
@@ -116,18 +170,18 @@
           </div>
 
           <p class="lead mb-5">
-            I am a <a href="https://simons.berkeley.edu/people/postdoctoral-researchers" target="_blank">Simons-Berkeley Postdoctoral Researcher</a>
-            hosted by <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/goldwasser.html" target="_blank">Shafi Goldwasser</a> currently at MIT.
+            I am a <a href="https://simons.berkeley.edu/people/postdoctoral-researchers" target="_blank" rel="noopener">Simons-Berkeley Postdoctoral Researcher</a>
+            hosted by <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/goldwasser.html" target="_blank" rel="noopener">Shafi Goldwasser</a> currently at MIT.
             I completed my PhD at EPFL, where I was advised by a duo:
-            <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank">Rudiger Urbanke</a> and
-            <a href="https://theory.epfl.ch/kapralov/" target="_blank">Michael Kapralov</a>.
+            <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank" rel="noopener">Rudiger Urbanke</a> and
+            <a href="https://theory.epfl.ch/kapralov/" target="_blank" rel="noopener">Michael Kapralov</a>.
             Before that I studied at University of Wroclaw working with
-            <a href="https://ii.uni.wroc.pl/~jma/index.phtml" target="_blank">Jerzy Marcinkowski</a>.
+            <a href="https://ii.uni.wroc.pl/~jma/index.phtml" target="_blank" rel="noopener">Jerzy Marcinkowski</a>.
           </p>
 
           <p class="lead mb-5">
             I work on the theoretical aspects of AI, focusing on AI safety and resilience. I am a member of the
-            <a href="https://simons.berkeley.edu/research-pods/resilience-research-pod" target="_blank">Resilience Research Pod at Simons</a>.
+            <a href="https://simons.berkeley.edu/research-pods/resilience-research-pod" target="_blank" rel="noopener">Resilience Research Pod at Simons</a>.
             My research interests also include quantum complexity theory and its connections to physics.
           </p>
 
@@ -135,7 +189,7 @@
           <p class="lead mb-5">Contact: grzegorzgluch93@gmail.com</p>
 
           <div class="social-icons">
-            <a href="https://scholar.google.com/citations?user=gg2sjRIAAAAJ&hl=en" target="_blank">
+            <a href="https://scholar.google.com/citations?user=gg2sjRIAAAAJ&hl=en" target="_blank" rel="noopener">
               <img src="dist/assets/img/google2.png" alt="Google Scholar" style="width:70px;height:70px;">
             </a>
           </div>
@@ -158,7 +212,7 @@
               was featured in a Quanta Magazine article.
             </p>
             <a href="https://www.quantamagazine.org/cryptographers-show-that-ai-protections-will-always-have-holes-20251210/"
-               target="_blank" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
+               target="_blank" rel="noopener" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
               Read the article
             </a>
           </div>
@@ -197,25 +251,34 @@
           <p class="lead mb-5">Authors appear in alphabetical order (a convention in theoretical computer science).</p>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://arxiv.org/abs/2601.18961" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Private Proofs of When and Where</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-secondary pub-status">Preprint</span>
+              <h4 class="pub-title">
+                <a href="https://arxiv.org/abs/2601.18961" target="_blank" rel="noopener">
+                  Private Proofs of When and Where
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-secondary pub-status">Preprint</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2504.20310" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://www.cs.columbia.edu/~ug2150/" target="_blank">Uma Girish</a>,
-                <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/goldwasser.html" target="_blank">Shafi Goldwasser</a>,
-                <a href="https://www.cs.columbia.edu/~tal/" target="_blank">Tal Malkin</a>,
-                <a href="https://scholar.google.com/citations?user=zd6quKkAAAAJ&hl=en" target="_blank">Leo Orshansky</a>,
-                <a href="https://www.henryyuen.net/" target="_blank">Henry Yuen</a>
+                with <a href="https://www.cs.columbia.edu/~ug2150/" target="_blank" rel="noopener">Uma Girish</a>,
+                <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/goldwasser.html" target="_blank" rel="noopener">Shafi Goldwasser</a>,
+                <a href="https://www.cs.columbia.edu/~tal/" target="_blank" rel="noopener">Tal Malkin</a>,
+                <a href="https://scholar.google.com/citations?user=zd6quKkAAAAJ&hl=en" target="_blank" rel="noopener">Leo Orshansky</a>,
+                <a href="https://www.henryyuen.net/" target="_blank" rel="noopener">Henry Yuen</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://arxiv.org/abs/2504.20310" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-                <details>
-                  <summary>Abstract</summary>
+
+              <details class="pub-abstract">
+                <summary>Abstract</summary>
+                <div class="pub-abstract-body">
                   <p class="mb-0">
                     Position verification schemes are interactive protocols where entities prove their physical location to others; this enables interactive proofs for statements of the form "I am at a location L."
                     Although secure position verification cannot be achieved with classical protocols (even with computational assumptions), they are feasible with quantum protocols.
@@ -225,367 +288,470 @@
                     We construct zero-knowledge position verification from standard position verification and post-quantum one-way functions. The central tool in our construction is a primitive we call position commitments,
                     which allow entities to privately commit to their physical position in a particular moment, which is then revealed at some later time.
                   </p>
-                </details>
-              </div>
-            </div>
-          </div>
-
-          <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
-            <div class="resume-content">
-              <a href="https://arxiv.org/abs/2504.20310" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">A Cryptographic Perspective on Mitigation vs. Detection in Machine Learning</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-secondary pub-status">Preprint</span>
-              </div>
-              <div class="pub-authors">
-                with <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/goldwasser.html" target="_blank">Shafi Goldwasser</a>
-              </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://arxiv.org/abs/2504.20310" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
-                <summary>Abstract</summary>
-                <p class="mb-0">
-                  In this paper, we initiate a cryptographically inspired theoretical study of detection versus mitigation of adversarial inputs produced by attackers of Machine Learning algorithms during inference time.
-                  We formally define defense by detection (DbD) and defense by mitigation (DbM). Our definitions come in the form of a 3-round protocol between two resource-bounded parties: a trainer/defender and an attacker.
-                  The attacker aims to produce inference-time inputs that fool the training algorithm. We define correctness, completeness, and soundness properties to capture successful defense at inference time while not degrading
-                  (too much) the performance of the algorithm on inputs from the training distribution.
-                  We first show that achieving DbD and achieving DbM are equivalent for ML classification tasks. Surprisingly, this is not the case for ML generative learning tasks, where there are many possible correct outputs
-                  that can be generated for each input. We show a separation between DbD and DbM by exhibiting a generative learning task for which is possible to defend by mitigation but is provably impossible to defend by detection
-                  under the assumption that the Identity-Based Fully Homomorphic Encryption (IB-FHE), publicly-verifiable zero-knowledge Succinct Non-Interactive Arguments of Knowledge (zk-SNARK) and Strongly Unforgeable Signatures exist.
-                  The mitigation phase uses significantly fewer samples than the initial training algorithm.
-                </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://arxiv.org/abs/2507.07341" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">On the Impossibility of Separating Intelligence from Judgment: The Computational Intractability of Filtering for AI Alignment</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">ICLR 2026</span>
+              <h4 class="pub-title">
+                <a href="https://arxiv.org/abs/2504.20310" target="_blank" rel="noopener">
+                  A Cryptographic Perspective on Mitigation vs. Detection in Machine Learning
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-secondary pub-status">Preprint</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2504.20310" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://zuseschoolrelai.de/people/scientists/sarah-ball/" target="_blank">Sarah Ball</a>,
-                <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/goldwasser.html" target="_blank">Shafi Goldwasser</a>,
-                <a href="https://jpsm.umd.edu/facultyprofile/kreuter/frauke" target="_blank">Frauke Kreuter</a>,
-                <a href="https://omereingold.wordpress.com/" target="_blank">Omer Reingold</a>,
-                <a href="https://guyrothblum.wordpress.com/" target="_blank">Guy N. Rothblum</a>
+                with <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/goldwasser.html" target="_blank" rel="noopener">Shafi Goldwasser</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://arxiv.org/abs/2507.07341" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  With the increased deployment of large language models (LLMs), one concern is their potential misuse for generating harmful content.
-                  Our work studies the alignment challenge, with a focus on filters to prevent the generation of unsafe information. Two natural points of intervention
-                  are the filtering of the input prompt before it reaches the model, and filtering the output after generation. Our main results demonstrate computational
-                  challenges in filtering both prompts and outputs. First, we show that there exist LLMs for which there are no efficient prompt filters: adversarial prompts
-                  that elicit harmful behavior can be easily constructed, which are computationally indistinguishable from benign prompts for any efficient filter.
-                  Our second main result identifies a natural setting in which output filtering is computationally intractable. All of our separation results are under
-                  cryptographic hardness assumptions. In addition to these core findings, we also formalize and study relaxed mitigation approaches, demonstrating further
-                  computational barriers. We conclude that safety cannot be achieved by designing filters external to the LLM internals (architecture and weights); in particular,
-                  black-box access to the LLM will not suffice. Based on our technical results, we argue that an aligned AI system's intelligence cannot be separated from its judgment.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    In this paper, we initiate a cryptographically inspired theoretical study of detection versus mitigation of adversarial inputs produced by attackers of Machine Learning algorithms during inference time.
+                    We formally define defense by detection (DbD) and defense by mitigation (DbM). Our definitions come in the form of a 3-round protocol between two resource-bounded parties: a trainer/defender and an attacker.
+                    The attacker aims to produce inference-time inputs that fool the training algorithm. We define correctness, completeness, and soundness properties to capture successful defense at inference time while not degrading
+                    (too much) the performance of the algorithm on inputs from the training distribution.
+                    We first show that achieving DbD and achieving DbM are equivalent for ML classification tasks. Surprisingly, this is not the case for ML generative learning tasks, where there are many possible correct outputs
+                    that can be generated for each input. We show a separation between DbD and DbM by exhibiting a generative learning task for which is possible to defend by mitigation but is provably impossible to defend by detection
+                    under the assumption that the Identity-Based Fully Homomorphic Encryption (IB-FHE), publicly-verifiable zero-knowledge Succinct Non-Interactive Arguments of Knowledge (zk-SNARK) and Strongly Unforgeable Signatures exist.
+                    The mitigation phase uses significantly fewer samples than the initial training algorithm.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://arxiv.org/abs/2410.08864" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">The Good, the Bad and the Ugly: Watermarks, Transferable Attacks and Adversarial Defenses</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">NeurIPS 2025</span>
-                <span class="badge bg-secondary">ICML 2024 Workshop</span>
+              <h4 class="pub-title">
+                <a href="https://arxiv.org/abs/2507.07341" target="_blank" rel="noopener">
+                  On the Impossibility of Separating Intelligence from Judgment: The Computational Intractability of Filtering for AI Alignment
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <!-- Make badge clickable if you have a venue page; otherwise keep as span -->
+                  <span class="badge bg-primary">ICLR 2026</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2507.07341" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://b-turan.github.io/" target="_blank">Berkant Turan</a>,
-                <a href="https://sites.google.com/view/sgnagarajan/home" target="_blank">Sai Ganesh Nagarajan</a>,
-                <a href="https://www.pokutta.com/" target="_blank">Sebastian Pokutta</a>
+                with <a href="https://zuseschoolrelai.de/people/scientists/sarah-ball/" target="_blank" rel="noopener">Sarah Ball</a>,
+                <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/goldwasser.html" target="_blank" rel="noopener">Shafi Goldwasser</a>,
+                <a href="https://jpsm.umd.edu/facultyprofile/kreuter/frauke" target="_blank" rel="noopener">Frauke Kreuter</a>,
+                <a href="https://omereingold.wordpress.com/" target="_blank" rel="noopener">Omer Reingold</a>,
+                <a href="https://guyrothblum.wordpress.com/" target="_blank" rel="noopener">Guy N. Rothblum</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://arxiv.org/abs/2410.08864" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  We formalize and analyze the trade-off between backdoor-based watermarks and adversarial defenses, framing it as an interactive protocol between a verifier and a prover.
-                  While previous works have primarily focused on this trade-off, our analysis extends it by identifying transferable attacks as a third, counterintuitive but necessary option.
-                  Our main result shows that for all learning tasks, at least one of the three exists: a watermark, an adversarial defense, or a transferable attack.
-                  By transferable attack, we refer to an efficient algorithm that generates queries indistinguishable from the data distribution and capable of fooling all efficient defenders.
-                  Using cryptographic techniques, specifically fully homomorphic encryption, we construct a transferable attack and prove its necessity in this trade-off.
-                  Furthermore, we show that any task that satisfies our notion of a transferable attack implies a cryptographic primitive, thus requiring the underlying task to be computationally complex.
-                  Finally, we show that tasks of bounded VC-dimension allow adversarial defenses against all attackers, while a subclass allows watermarks secure against fast adversaries.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    With the increased deployment of large language models (LLMs), one concern is their potential misuse for generating harmful content.
+                    Our work studies the alignment challenge, with a focus on filters to prevent the generation of unsafe information. Two natural points of intervention
+                    are the filtering of the input prompt before it reaches the model, and filtering the output after generation. Our main results demonstrate computational
+                    challenges in filtering both prompts and outputs. First, we show that there exist LLMs for which there are no efficient prompt filters: adversarial prompts
+                    that elicit harmful behavior can be easily constructed, which are computationally indistinguishable from benign prompts for any efficient filter.
+                    Our second main result identifies a natural setting in which output filtering is computationally intractable. All of our separation results are under
+                    cryptographic hardness assumptions. In addition to these core findings, we also formalize and study relaxed mitigation approaches, demonstrating further
+                    computational barriers. We conclude that safety cannot be achieved by designing filters external to the LLM internals (architecture and weights); in particular,
+                    black-box access to the LLM will not suffice. Based on our technical results, we argue that an aligned AI system's intelligence cannot be separated from its judgment.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://arxiv.org/abs/1703.01475" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">4/3 Rectangle Tiling lower bound</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">IPL 2025</span>
+              <h4 class="pub-title">
+                <a href="https://arxiv.org/abs/2410.08864" target="_blank" rel="noopener">
+                  The Good, the Bad and the Ugly: Watermarks, Transferable Attacks and Adversarial Defenses
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">NeurIPS 2025</span>
+                  <span class="badge bg-secondary">ICML 2024 Workshop</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2410.08864" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://www.ii.uni.wroc.pl/~lorys/" target="_blank">Krzysztof Loryś</a>
+                with <a href="https://b-turan.github.io/" target="_blank" rel="noopener">Berkant Turan</a>,
+                <a href="https://sites.google.com/view/sgnagarajan/home" target="_blank" rel="noopener">Sai Ganesh Nagarajan</a>,
+                <a href="https://www.pokutta.com/" target="_blank" rel="noopener">Sebastian Pokutta</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://arxiv.org/abs/1703.01475" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  Given an n×n array of positive numbers, find a tiling using at most p rectangles minimizing the maximum rectangle weight (sum of covered entries).
-                  We prove it is NP-hard to approximate this problem within a factor of 4/3.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    We formalize and analyze the trade-off between backdoor-based watermarks and adversarial defenses, framing it as an interactive protocol between a verifier and a prover.
+                    While previous works have primarily focused on this trade-off, our analysis extends it by identifying transferable attacks as a third, counterintuitive but necessary option.
+                    Our main result shows that for all learning tasks, at least one of the three exists: a watermark, an adversarial defense, or a transferable attack.
+                    By transferable attack, we refer to an efficient algorithm that generates queries indistinguishable from the data distribution and capable of fooling all efficient defenders.
+                    Using cryptographic techniques, specifically fully homomorphic encryption, we construct a transferable attack and prove its necessity in this trade-off.
+                    Furthermore, we show that any task that satisfies our notion of a transferable attack implies a cryptographic primitive, thus requiring the underlying task to be computationally complex.
+                    Finally, we show that tasks of bounded VC-dimension allow adversarial defenses against all attackers, while a subclass allows watermarks secure against fast adversaries.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://arxiv.org/abs/2303.02080" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Nonlocality under Computational Assumptions</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">STOC 2024</span>
-                <span class="badge bg-secondary">QIP 2025</span>
+              <h4 class="pub-title">
+                <a href="https://arxiv.org/abs/1703.01475" target="_blank" rel="noopener">
+                  4/3 Rectangle Tiling lower bound
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">IPL 2025</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/1703.01475" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://lasec.epfl.ch/people/barooti/" target="_blank">Khashayar Barooti</a>,
-                <a href="https://agheorghiu.com/" target="_blank">Alexandru Gheorghiu</a>,
-                <a href="https://scholar.google.com/citations?user=u-DfxLcAAAAJ&hl=fr" target="_blank">Marc-Olivier Renou</a>
+                with <a href="https://www.ii.uni.wroc.pl/~lorys/" target="_blank" rel="noopener">Krzysztof Loryś</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://dl.acm.org/doi/abs/10.1145/3618260.3649750" target="_blank" class="btn btn-secondary" role="button">conference</a>
-                <a href="https://arxiv.org/abs/2303.02080" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  Nonlocality and its connections to entanglement are fundamental features of quantum mechanics that have found numerous applications in quantum information science.
-                  A set of correlations is said to be nonlocal if it cannot be reproduced by spacelike-separated parties sharing randomness and performing local operations.
-                  An important practical consideration is that the runtime of the parties has to be shorter than the time it takes light to travel between them.
-                  One way to model this restriction is to assume that the parties are computationally bounded. We therefore initiate the study of nonlocality under computational assumptions and derive the following results:
-                  (a) We define the set 𝖭𝖾𝖫 (not-efficiently-local) as consisting of all bipartite states whose correlations arising from local measurements cannot be reproduced with shared randomness and polynomial-time local operations.
-                  (b) Under the assumption that the Learning With Errors problem cannot be solved in quantum polynomial-time, we show that 𝖭𝖾𝖫=𝖤𝖭𝖳, where 𝖤𝖭𝖳 is the set of all bipartite entangled states (pure and mixed).
-                  This is in contrast to the standard notion of nonlocality where it is known that some entangled states, e.g. Werner states, are local.
-                  (c) We prove that if 𝖭𝖾𝖫=𝖤𝖭𝖳 unconditionally, then 𝙱𝚀𝙿≠𝙿𝙿.
-                  (d) Using (c), we show that a certain natural class of 1-round delegated quantum computation protocols that are sound against 𝙿𝙿 provers cannot exist.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    Given an n×n array of positive numbers, find a tiling using at most p rectangles minimizing the maximum rectangle weight (sum of covered entries).
+                    We prove it is NP-hard to approximate this problem within a factor of 4/3.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://arxiv.org/abs/2303.07874" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Bayes Complexity of Learners vs Overfitting</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-secondary pub-status">Under Review</span>
+              <h4 class="pub-title">
+                <a href="https://arxiv.org/abs/2303.02080" target="_blank" rel="noopener">
+                  Nonlocality under Computational Assumptions
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">STOC 2024</span>
+                  <span class="badge bg-secondary">QIP 2025</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2303.02080" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank">Rudiger Urbanke</a>
+                with <a href="https://lasec.epfl.ch/people/barooti/" target="_blank" rel="noopener">Khashayar Barooti</a>,
+                <a href="https://agheorghiu.com/" target="_blank" rel="noopener">Alexandru Gheorghiu</a>,
+                <a href="https://scholar.google.com/citations?user=u-DfxLcAAAAJ&hl=fr" target="_blank" rel="noopener">Marc-Olivier Renou</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://arxiv.org/abs/2303.07874" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  We introduce a new notion of complexity of functions and we show that it has the following properties: (i) it governs a PAC Bayes-like generalization bound,
-                  (ii) for neural networks it relates to natural notions of complexity of functions (such as the variation), and (iii) it explains the generalization gap between
-                  neural networks and linear schemes. Moreover, our notion naturally generalizes to neural networks with several layers. Even though the computation of our complexity
-                  is nontrivial in general, an upper-bound is often easy to derive, even for higher number of layers and functions with structure, such as period functions.
-                  An upper-bound we derive allows to show a separation in the number of samples needed for good generalization between 2 and 4-layer neural networks for periodic functions.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    Nonlocality and its connections to entanglement are fundamental features of quantum mechanics that have found numerous applications in quantum information science.
+                    A set of correlations is said to be nonlocal if it cannot be reproduced by spacelike-separated parties sharing randomness and performing local operations.
+                    An important practical consideration is that the runtime of the parties has to be shorter than the time it takes light to travel between them.
+                    One way to model this restriction is to assume that the parties are computationally bounded. We therefore initiate the study of nonlocality under computational assumptions and derive the following results:
+                    (a) We define the set 𝖭𝖾𝖫 (not-efficiently-local) as consisting of all bipartite states whose correlations arising from local measurements cannot be reproduced with shared randomness and polynomial-time local operations.
+                    (b) Under the assumption that the Learning With Errors problem cannot be solved in quantum polynomial-time, we show that 𝖭𝖾𝖫=𝖤𝖭𝖳, where 𝖤𝖭𝖳 is the set of all bipartite entangled states (pure and mixed).
+                    This is in contrast to the standard notion of nonlocality where it is known that some entangled states, e.g. Werner states, are local.
+                    (c) We prove that if 𝖭𝖾𝖫=𝖤𝖭𝖳 unconditionally, then 𝙱𝚀𝙿≠𝙿𝙿.
+                    (d) Using (c), we show that a certain natural class of 1-round delegated quantum computation protocols that are sound against 𝙿𝙿 provers cannot exist.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://proceedings.mlr.press/v206/gluch23a.html" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Breaking a Classical Barrier for Classifying Arbitrary Test Examples in the Quantum Model</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">AISTATS 2023</span>
-                <span class="badge bg-secondary">QIP 2022 Poster</span>
+              <h4 class="pub-title">
+                <a href="https://arxiv.org/abs/2303.07874" target="_blank" rel="noopener">
+                  Bayes Complexity of Learners vs Overfitting
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-secondary pub-status">Under Review</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2303.07874" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://lasec.epfl.ch/people/barooti/" target="_blank">Khashayar Barooti</a>,
-                <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank">Rudiger Urbanke</a>
+                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank" rel="noopener">Rudiger Urbanke</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://proceedings.mlr.press/v206/gluch23a.html" target="_blank" class="btn btn-secondary" role="button">conference</a>
-                <a href="https://arxiv.org/abs/2112.09625" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
+
+              <details class="pub-abstract">
+                <summary>Abstract</summary>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    We introduce a new notion of complexity of functions and we show that it has the following properties: (i) it governs a PAC Bayes-like generalization bound,
+                    (ii) for neural networks it relates to natural notions of complexity of functions (such as the variation), and (iii) it explains the generalization gap between
+                    neural networks and linear schemes. Moreover, our notion naturally generalizes to neural networks with several layers. Even though the computation of our complexity
+                    is nontrivial in general, an upper-bound is often easy to derive, even for higher number of layers and functions with structure, such as period functions.
+                    An upper-bound we derive allows to show a separation in the number of samples needed for good generalization between 2 and 4-layer neural networks for periodic functions.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- Publication -->
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
+            <div class="resume-content">
+              <h4 class="pub-title">
+                <a href="https://proceedings.mlr.press/v206/gluch23a.html" target="_blank" rel="noopener">
+                  Breaking a Classical Barrier for Classifying Arbitrary Test Examples in the Quantum Model
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">AISTATS 2023</span>
+                  <span class="badge bg-secondary">QIP 2022 Poster</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2112.09625" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
-              <details>
+
+              <div class="pub-authors">
+                with <a href="https://lasec.epfl.ch/people/barooti/" target="_blank" rel="noopener">Khashayar Barooti</a>,
+                <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank" rel="noopener">Rudiger Urbanke</a>
+              </div>
+
+              <details class="pub-abstract">
                 <summary>Informal Abstract</summary>
-                <p class="mb-0">
-                  This paper presents a surprising connection between recent advances in delegation of quantum computation to adversarial robustness.
-                  Imagine an adversary A that is in between a classifier C and a source S producing samples to be classified.
-                  Can we design an interactive protocol between C and the A, in which A would convince C that the samples being sent for classification really came from S?
-                  Using ideas from delegation of quantum computation we show it is possible to do it if A receives quantum states from S and A communicates with C classically.
-                  Why do we need quantum mechanics? Assume that S is uniform on {0,1}^n. How can A convince C that the samples he sent really came from S and were not handcrafted
-                  by S (if A received classical samples from S)? This seems to us be an almost impossible problem to solve, as we discuss in the paper.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    This paper presents a surprising connection between recent advances in delegation of quantum computation to adversarial robustness.
+                    Imagine an adversary A that is in between a classifier C and a source S producing samples to be classified.
+                    Can we design an interactive protocol between C and the A, in which A would convince C that the samples being sent for classification really came from S?
+                    Using ideas from delegation of quantum computation we show it is possible to do it if A receives quantum states from S and A communicates with C classically.
+                    Why do we need quantum mechanics? Assume that S is uniform on {0,1}^n. How can A convince C that the samples he sent really came from S and were not handcrafted
+                    by S (if A received classical samples from S)? This seems to us be an almost impossible problem to solve, as we discuss in the paper.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://arxiv.org/abs/2104.05508" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Noether: The more things change, the more stay the same</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-secondary pub-status">Under Review</span>
+              <h4 class="pub-title">
+                <a href="https://arxiv.org/abs/2104.05508" target="_blank" rel="noopener">
+                  Noether: The more things change, the more stay the same
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-secondary pub-status">Under Review</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2104.05508" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank">Rudiger Urbanke</a>
+                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank" rel="noopener">Rudiger Urbanke</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://arxiv.org/abs/2104.05508" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Informal Abstract</summary>
-                <p class="mb-0">
-                  The field of theoretical machine learning managed to produce some initial explanations for why neural networks perform so well in practice.
-                  Unfortunately when reading these papers it is hard to see a common theme or a unifying message.
-                  In this paper we show how to look at many of the recent advances through one lens, i.e. the lens of symmetries.
-                  We show how this concept explains many previous results and how it helps to obtain new ones. To do all of that we study a connection to Noether's theorem from physics.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    The field of theoretical machine learning managed to produce some initial explanations for why neural networks perform so well in practice.
+                    Unfortunately when reading these papers it is hard to see a common theme or a unifying message.
+                    In this paper we show how to look at many of the recent advances through one lens, i.e. the lens of symmetries.
+                    We show how this concept explains many previous results and how it helps to obtain new ones. To do all of that we study a connection to Noether's theorem from physics.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://proceedings.neurips.cc/paper/2021/hash/ae06fbdc519bddaa88aa1b24bace4500-Abstract.html" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Exponential Separation between Two Learning Models and Adversarial Robustness</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">NeurIPS 2021</span>
-                <span class="badge bg-secondary">Spotlight</span>
+              <h4 class="pub-title">
+                <a href="https://proceedings.neurips.cc/paper/2021/hash/ae06fbdc519bddaa88aa1b24bace4500-Abstract.html" target="_blank" rel="noopener">
+                  Exponential Separation between Two Learning Models and Adversarial Robustness
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">NeurIPS 2021</span>
+                  <span class="badge bg-secondary">Spotlight</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2102.05475" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank">Rudiger Urbanke</a>
+                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank" rel="noopener">Rudiger Urbanke</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://proceedings.neurips.cc/paper/2021/hash/ae06fbdc519bddaa88aa1b24bace4500-Abstract.html" target="_blank" class="btn btn-secondary" role="button">conference</a>
-                <a href="https://arxiv.org/abs/2102.05475" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Informal Abstract</summary>
-                <p class="mb-0">
-                  There are two sides of this paper. The technical one and potential applications to adversarial robustness.
-                  On the technical side we show exponential separation between two models: the standard PAC-learning model and an Equivalence-Query model.
-                  Thinking of adversarial examples as counterexamples, our result can be viewed as theoretical confirmation of findings that structured adversarial examples
-                  can speed up learning. We also discuss implications for adversarial robustness beyond norm-bounded threat models.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    There are two sides of this paper. The technical one and potential applications to adversarial robustness.
+                    On the technical side we show exponential separation between two models: the standard PAC-learning model and an Equivalence-Query model.
+                    Thinking of adversarial examples as counterexamples, our result can be viewed as theoretical confirmation of findings that structured adversarial examples
+                    can speed up learning. We also discuss implications for adversarial robustness beyond norm-bounded threat models.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="http://proceedings.mlr.press/v139/gluch21a.html" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Query Complexity of Adversarial Attacks</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">ICML 2021</span>
+              <h4 class="pub-title">
+                <a href="http://proceedings.mlr.press/v139/gluch21a.html" target="_blank" rel="noopener">
+                  Query Complexity of Adversarial Attacks
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">ICML 2021</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2010.01039" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank">Rudiger Urbanke</a>
+                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank" rel="noopener">Rudiger Urbanke</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="http://proceedings.mlr.press/v139/gluch21a.html" target="_blank" class="btn btn-secondary" role="button">conference</a>
-                <a href="https://arxiv.org/abs/2010.01039" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Informal Abstract</summary>
-                <p class="mb-0">
-                  How hard is it to adversarially attack a network with only black-box access?
-                  We analyze a spectrum of threat models indexed by query access and give lower bounds on the number of queries needed to match white-box attacks,
-                  in terms of entropy of decision boundaries. We also analyze classical learning algorithms on synthetic tasks and prove meaningful security guarantees.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    How hard is it to adversarially attack a network with only black-box access?
+                    We analyze a spectrum of threat models indexed by query access and give lower bounds on the number of queries needed to match white-box attacks,
+                    in terms of entropy of decision boundaries. We also analyze classical learning algorithms on synthetic tasks and prove meaningful security guarantees.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://epubs.siam.org/doi/abs/10.1137/1.9781611976465.97" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Spectral Clustering Oracles in Sublinear Time</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">SODA 2021</span>
+              <h4 class="pub-title">
+                <a href="https://epubs.siam.org/doi/abs/10.1137/1.9781611976465.97" target="_blank" rel="noopener">
+                  Spectral Clustering Oracles in Sublinear Time
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">SODA 2021</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/2101.05549" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://theory.epfl.ch/kapralov/" target="_blank">Michael Kapralov</a>,
-                <a href="https://sites.google.com/site/silviolattanzi/" target="_blank">Silvio Lattanzi</a>,
+                with <a href="https://theory.epfl.ch/kapralov/" target="_blank" rel="noopener">Michael Kapralov</a>,
+                <a href="https://sites.google.com/site/silviolattanzi/" target="_blank" rel="noopener">Silvio Lattanzi</a>,
                 Aida Mousavifar,
-                <a href="https://ls2-www.cs.tu-dortmund.de/grav/en/grav_files/people/sohler" target="_blank">Christian Sohler</a>
+                <a href="https://ls2-www.cs.tu-dortmund.de/grav/en/grav_files/people/sohler" target="_blank" rel="noopener">Christian Sohler</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://epubs.siam.org/doi/abs/10.1137/1.9781611976465.97" target="_blank" class="btn btn-secondary" role="button">conference</a>
-                <a href="https://arxiv.org/abs/2101.05549" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  Given a graph G that can be partitioned into k disjoint expanders, we construct a small-space data structure (a spectral clustering oracle)
-                  that allows quickly classifying vertices according to their cluster. Our main result gives sublinear query time with strong per-cluster guarantees,
-                  using dot-product access to a spectral embedding via estimates of short random walks and a carefully analyzed linear transformation.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    Given a graph G that can be partitioned into k disjoint expanders, we construct a small-space data structure (a spectral clustering oracle)
+                    that allows quickly classifying vertices according to their cluster. Our main result gives sublinear query time with strong per-cluster guarantees,
+                    using dot-product access to a spectral embedding via estimates of short random walks and a carefully analyzed linear transformation.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="http://proceedings.mlr.press/v108/gluch20a.html" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Constructing a provably adversarially-robust classifier from a high accuracy one</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">AISTATS 2020</span>
+              <h4 class="pub-title">
+                <a href="http://proceedings.mlr.press/v108/gluch20a.html" target="_blank" rel="noopener">
+                  Constructing a provably adversarially-robust classifier from a high accuracy one
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">AISTATS 2020</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/1912.07561" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank">Rudiger Urbanke</a>
+                with <a href="https://people.epfl.ch/rudiger.urbanke" target="_blank" rel="noopener">Rudiger Urbanke</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="http://proceedings.mlr.press/v108/gluch20a.html" target="_blank" class="btn btn-secondary" role="button">conference</a>
-                <a href="https://arxiv.org/abs/1912.07561" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  Given black-box access to a high-accuracy classifier f, we show how to construct a classifier g that remains accurate and is provably robust to adversarial L2 perturbations.
-                  Our approach builds on randomized smoothing and uses geometric tools like random partitions and doubling dimension to bound adversarial error in terms of optimal error.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    Given black-box access to a high-accuracy classifier f, we show how to construct a classifier g that remains accurate and is provably robust to adversarial L2 perturbations.
+                    Our approach builds on randomized smoothing and uses geometric tools like random partitions and doubling dimension to bound adversarial error in terms of optimal error.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
@@ -593,59 +759,73 @@
           <div class="subheading mb-3">Pre-PhD work</div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://drops.dagstuhl.de/opus/volltexte/2019/10317/" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">The first order truth behind undecidability of regular path queries determinacy</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">ICDT 2019</span>
+              <h4 class="pub-title">
+                <a href="https://drops.dagstuhl.de/opus/volltexte/2019/10317/" target="_blank" rel="noopener">
+                  The first order truth behind undecidability of regular path queries determinacy
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">ICDT 2019</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/1808.07767" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://ii.uni.wroc.pl/~jma/index.phtml" target="_blank">Jerzy Marcinkowski</a>,
-                <a href="https://ii.uni.wroc.pl/instytut/pracownicy/103" target="_blank">Piotr Ostropolski-Nalewaja</a>
+                with <a href="https://ii.uni.wroc.pl/~jma/index.phtml" target="_blank" rel="noopener">Jerzy Marcinkowski</a>,
+                <a href="https://ii.uni.wroc.pl/instytut/pracownicy/103" target="_blank" rel="noopener">Piotr Ostropolski-Nalewaja</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://drops.dagstuhl.de/opus/volltexte/2019/10317/" target="_blank" class="btn btn-secondary" role="button">conference</a>
-                <a href="https://arxiv.org/abs/1808.07767" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  We show that determinacy remains undecidable even without regularity assumptions: it is undecidable for finite unions of conjunctive path queries,
-                  strengthening prior undecidability results for Regular Path Queries.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    We show that determinacy remains undecidable even without regularity assumptions: it is undecidable for finite unions of conjunctive path queries,
+                    strengthening prior undecidability results for Regular Path Queries.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
 
           <!-- Publication -->
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-item d-flex flex-column flex-md-row justify-content-between pub-item">
             <div class="resume-content">
-              <a href="https://dl.acm.org/doi/abs/10.1145/3209108.3209120" target="_blank" style="text-decoration: none">
-                <h4 class="mb-0">Can One Escape Red Chains? Regular Path Queries Determinacy is Undecidable</h4>
-              </a>
-              <div class="pub-venue">
-                <span class="badge bg-primary">LICS 2018</span>
+              <h4 class="pub-title">
+                <a href="https://dl.acm.org/doi/abs/10.1145/3209108.3209120" target="_blank" rel="noopener">
+                  Can One Escape Red Chains? Regular Path Queries Determinacy is Undecidable
+                </a>
+              </h4>
+
+              <div class="pub-meta">
+                <div class="pub-badges">
+                  <span class="badge bg-primary">LICS 2018</span>
+                </div>
+                <div class="pub-arxiv">
+                  <a href="https://arxiv.org/abs/1802.01554" target="_blank" rel="noopener">arXiv</a>
+                </div>
               </div>
+
               <div class="pub-authors">
-                with <a href="https://ii.uni.wroc.pl/~jma/index.phtml" target="_blank">Jerzy Marcinkowski</a>,
-                <a href="https://ii.uni.wroc.pl/instytut/pracownicy/103" target="_blank">Piotr Ostropolski-Nalewaja</a>
+                with <a href="https://ii.uni.wroc.pl/~jma/index.phtml" target="_blank" rel="noopener">Jerzy Marcinkowski</a>,
+                <a href="https://ii.uni.wroc.pl/instytut/pracownicy/103" target="_blank" rel="noopener">Piotr Ostropolski-Nalewaja</a>
               </div>
-              <div class="pub-links btn-group btn-group-sm" role="group" aria-label="paper links">
-                <a href="https://dl.acm.org/doi/10.1145/3209108.3209120" target="_blank" class="btn btn-secondary" role="button">conference</a>
-                <a href="https://arxiv.org/abs/1802.01554" target="_blank" class="btn btn-secondary" role="button">arXiv</a>
-              </div>
-              <details>
+
+              <details class="pub-abstract">
                 <summary>Abstract</summary>
-                <p class="mb-0">
-                  We solve a long-standing open problem by proving that Query Determinacy is undecidable for Regular Path Queries, a foundational query language for graph databases.
-                </p>
+                <div class="pub-abstract-body">
+                  <p class="mb-0">
+                    We solve a long-standing open problem by proving that Query Determinacy is undecidable for Regular Path Queries, a foundational query language for graph databases.
+                  </p>
+                </div>
               </details>
             </div>
           </div>
-
-          <!-- Publication -->
 
         </div>
       </section>
@@ -657,7 +837,7 @@
           <h2 class="mb-5">Teaching</h2>
           <h4 class="mb-0">
             Videos from a course on "Quantum Interactive Proofs" I held at EPFL can be found
-            <a href="https://kashbrti.github.io/quantum-ip/" target="_blank" class="btn btn-secondary" role="button" aria-pressed="true">here</a>
+            <a href="https://kashbrti.github.io/quantum-ip/" target="_blank" rel="noopener" class="btn btn-secondary" role="button" aria-pressed="true">here</a>
           </h4>
         </div>
       </section>
@@ -683,7 +863,7 @@
               <div>Master of Science</div>
               <div class="subheading mb-3">Computer Science</div>
               <ul>
-                <li>MSc Research Scholar, working with <a href="https://ii.uni.wroc.pl/~jma/index.phtml" target="_blank">Jerzy Marcinkowski</a></li>
+                <li>MSc Research Scholar, working with <a href="https://ii.uni.wroc.pl/~jma/index.phtml" target="_blank" rel="noopener">Jerzy Marcinkowski</a></li>
               </ul>
             </div>
             <div class="flex-shrink-0"><span class="text-primary">2015 - 2018</span></div>
