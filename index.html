@@ -84,6 +84,23 @@
 
       /* Button spacing in groups */
       .btn-group .btn:not(:last-child) { margin-right: 8px; }
+
+      /* About: expandable address – custom chevron, tight spacing */
+      #about details.address-details { margin-bottom: 0.5rem; }
+      #about details.address-details summary {
+        list-style: none;
+        cursor: pointer;
+      }
+      #about details.address-details summary::-webkit-details-marker { display: none; }
+      #about details.address-details summary::marker { content: none; }
+      #about details.address-details summary::before {
+        content: "▸ ";
+        font-size: 0.75em;
+        opacity: 0.7;
+      }
+      #about details.address-details[open] summary::before {
+        content: "▾ ";
+      }
     </style>
 
     <style>
@@ -176,17 +193,9 @@
             Grzegorz (Greg)
             <span class="text-primary">Głuch</span>
           </h1>
-          <p class="lead mb-3" style="font-size: 20px;">
+          <p class="lead mb-5" style="font-size: 20px;">
             Theoretical computer scientist working on AI safety, cryptography, and quantum complexity.
           </p>
-          <details class="mb-5" style="font-size: 0.9rem;">
-            <summary style="cursor: pointer;">Address</summary>
-            <p class="mb-0 mt-1" style="font-size: 0.9rem;">
-              Simons Institute for the Theory of Computing<br />
-              Melvin Calvin Laboratory, Room 318<br />
-              UC Berkeley · CA 94720
-            </p>
-          </details>
 
           <p class="lead mb-5">
             I am a <a href="https://simons.berkeley.edu/people/postdoctoral-researchers" target="_blank">Simons-Berkeley Postdoctoral Researcher</a>
@@ -215,6 +224,15 @@
             I’m broadly interested in collaborations at the intersection of AI safety, cryptography, and quantum information.
             Feel free to reach out at <a href="mailto:grzegorzgluch93@gmail.com">grzegorzgluch93@gmail.com</a>.
           </p>
+
+          <details class="address-details" style="font-size: 1.05rem;">
+            <summary>Address</summary>
+            <p class="mb-0 mt-1" style="font-size: 1.05rem;">
+              Simons Institute for the Theory of Computing<br />
+              Melvin Calvin Laboratory, Room 318<br />
+              UC Berkeley · CA 94720
+            </p>
+          </details>
 
           <div class="social-icons">
             <a href="https://scholar.google.com/citations?user=gg2sjRIAAAAJ&hl=en" target="_blank" aria-label="Google Scholar profile">
